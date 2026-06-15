@@ -1,0 +1,87 @@
+/*
+CSS is used to control design and layout.
+
+Without CSS:
+Plain black text
+No spacing
+Ugly forms
+Everything looks unstructured
+With CSS:
+Clean layout
+Good spacing
+Buttons look professional
+Pages look like real applications
+In your project:
+
+CSS is used for:
+
+Login/Register form styling
+Skill pack cards design
+Page alignment and spacing
+Making the UI look “industry ready”
+*/
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+
+    background-image: url('/images/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Header */
+.header {
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Logo */
+.header img {
+    height: 50px;
+}
+
+/* Center container */
+.container {
+    width: 400px;
+    margin: 80px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px gray;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 10px;
+    background: #3498db;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #2980b9;
+}
+
+/* Skill cards */
+.card {
+    background: white;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px gray;
+}
