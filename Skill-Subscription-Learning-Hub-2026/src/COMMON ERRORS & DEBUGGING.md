@@ -17,7 +17,7 @@ Fix:
 
 JSP must be inside WEB-INF/views/
 Return name correctly:
-return "login" ❌ NOT login.jsp
+return "login"  NOT login.jsp
 
 
 3. NullPointerException
