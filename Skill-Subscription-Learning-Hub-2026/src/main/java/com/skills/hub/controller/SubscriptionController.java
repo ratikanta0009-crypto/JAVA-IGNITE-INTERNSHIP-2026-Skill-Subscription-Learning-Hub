@@ -4,18 +4,13 @@ import com.skills.hub.model.Subscription;
 import com.skills.hub.service.SubscriptionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-/*
-=========================================================
-WHAT IS THIS FILE?
-Handles subscription between user and skill pack
-=========================================================
-*/
+/**
+ * Handles subscription operations between users and skill packs.
+ */
 @Controller
 public class SubscriptionController {
 
@@ -25,34 +20,43 @@ public class SubscriptionController {
         this.subscriptionService = subscriptionService;
     }
 
+    /**
+     * Subscribe a user to a skill pack.
+     *
+     * Example:
+     * /subscribe?userId=1&packId=2
+     */
     @GetMapping("/subscribe")
-    public String subscribe(@RequestParam Long userId,
-                            @RequestParam Long packId) {
-        // =========================
-        // TASK - COMPLETED
-        // =========================
-        // STEP 1: call subscriptionService.subscribe(userId, packId)
+    public String subscribe(@RequestParam("userId") Long userId,
+                            @RequestParam("packId") Long packId) {
+
         subscriptionService.subscribe(userId, packId);
 
-        // STEP 2: redirect to subscriptions page (passing the userId in the URL)
         return "redirect:/subscriptions/" + userId;
     }
 
+    /**
+     * Display all subscriptions for a user.
+     *
+     * Example:
+     * /subscriptions/1
+     */
     @GetMapping("/subscriptions/{userId}")
-    public String viewSubscriptions(@PathVariable Long userId, Model model) {
-        // =========================
-        // TASK - COMPLETED
-        // =========================
-        // STEP 1: list = subscriptionService.getUserSubscriptions(userId)
-        List<Subscription> list = subscriptionService.getUserSubscriptions(userId);
+    public String viewSubscriptions(@PathVariable("userId") Long userId,
+                                    Model model) {
 
-        // STEP 2: model.addAttribute("subs", list)
-        model.addAttribute("subs", list);
+        List<Subscription> subscriptions =
+                subscriptionService.getUserSubscriptions(userId);
 
-        // STEP 3: return subscriptions.jsp
+        model.addAttribute("subs", subscriptions);
+        model.addAttribute("userId", userId);
+
         return "subscriptions";
     }
 
+    /**
+     * Getter for SubscriptionService.
+     */
     public SubscriptionService getSubscriptionService() {
         return subscriptionService;
     }
